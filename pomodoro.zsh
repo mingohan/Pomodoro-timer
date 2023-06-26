@@ -2,6 +2,8 @@
 
 set -e
 
+script_path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
 # auto install related tools, if -i given
 if [[ $1 == "-I" || $1 == "--install" ]]; then
   echo "Will auto install related tools, continue? (y/n)"
@@ -25,14 +27,14 @@ function set_up_duration {
 }
 
 function rest {
-  ascii-image-converter img/rest.png -C --color-bg &&
+  ascii-image-converter ${script_path}/img/rest.png -C --color-bg &&
   echo "\n你已工作 ${task_duration} 分鐘，休息一下鴨!!! 😃 😃 😃\n" &&
   timer -n '休息時間' ${rest_duration} && terminal-notifier -title '\[ 番茄鐘提醒 ]' \
     -subtitle "你已休息 ${rest_duration} 分鐘" -message '休息時間結束，繼續工作吧 ! 💪 💪 💪'
 }
 
 function work {
-  ascii-image-converter img/go_for_it.png -C --color-bg &&
+  ascii-image-converter ${script_path}/img/go_for_it.png -C --color-bg &&
   echo '\n開工了，蔥鴨，衝呀!!! 💪 💪 💪\n' &&
   timer -n ${task_name} ${task_duration} && terminal-notifier -title '\[ 番茄鐘提醒 ]' \
     -subtitle "你已工作 ${input_task_duration} 分鐘" \
@@ -45,7 +47,7 @@ function task_break_down_reminder {
   if [[ $sure == "y" ]]; then
     set_up_duration && work
   else
-    ascii-image-converter img/break_down.png -C --color-bg &&
+    ascii-image-converter ${script_path}/img/break_down.png -C --color-bg &&
   echo '\n還在等什麼，先去拆卡鴨 !!! 🔪 🔪 🔪' &&
   fi
 }
@@ -57,7 +59,7 @@ function lunch_notification {
     current_time=$(date +"%H:%M")
 
     if [[ $current_time == $target_time ]]; then
-      ascii-image-converter img/lunch.png -C --color-bg &&
+      ascii-image-converter ${script_path}/img/lunch.png -C --color-bg &&
       echo '\n吃飯了鴨!!!  🍲 🍲 🍲 \n' &&
       terminal-notifier -title '\[ 午餐提醒 ]' \
         -subtitle "吃飯了鴨" -message '吃個飯再繼續吧 !!! 🍖 🍖 🍖'
@@ -75,7 +77,7 @@ function punch_card_notification {
     current_time=$(date +"%H:%M")
 
     if [[ $current_time == $target_time ]]; then
-      ascii-image-converter img/punch_card.png -C --color-bg &&
+      ascii-image-converter ${script_path}/img/punch_card.png -C --color-bg &&
       echo '\n打卡了鴨!!!  🕰️ 🕰️ 🕰️\n' &&
       terminal-notifier -title '\[ 打卡提醒 ]' \
         -subtitle "打卡了鴨" -message '記得打卡鴨 !!! 🕰️ 🕰️ 🕰️'
