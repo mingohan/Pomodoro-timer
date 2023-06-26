@@ -16,8 +16,8 @@ fi
 
 function set_up_duration {
   vared -p "請輸入任務名稱: " -c task_name
-  vared -p "請輸入番茄時間(分): " -c input_task_duration
-  vared -p "請輸入休息時間(分): " -c input_rest_duration
+  vared -p "請輸入番茄時間(分鐘): " -c input_task_duration
+  vared -p "請輸入休息時間(分鐘): " -c input_rest_duration
 
   #The defaults unit is seconds, so we need to add "m" after the value to convert the unit to minutes.
   task_duration="${input_task_duration}m"
