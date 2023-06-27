@@ -4,15 +4,16 @@ set -e
 
 script_path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
-# auto install related tools, if -i given
+# install required tools, if -I or --install given
 if [[ $1 == "-I" || $1 == "--install" ]]; then
-  echo "Will auto install related tools, continue? (y/n)"
+  echo "Will install required tools, continue? (y/n)"
   read sure
   if [[ $sure != "y" ]]; then
     exit 0
   fi
-  brew install caarlos0/tap/timer
   brew install terminal-notifier
+  brew install TheZoraiz/ascii-image-converter/ascii-image-converter
+  brew install caarlos0/tap/timer
   exit 0
 fi
 
