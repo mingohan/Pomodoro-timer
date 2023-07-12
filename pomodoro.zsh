@@ -89,6 +89,6 @@ function punch_card_notification {
   done
 }
 
-lunch_notification &
-punch_card_notification &
+# lunch_notification &
+# punch_card_notification &
 task_break_down_reminder
